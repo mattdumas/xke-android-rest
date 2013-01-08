@@ -8,8 +8,7 @@
             android:minSdkVersion="11"
             android:targetSdkVersion="17" />
 
-    <!-- FIXME: add INTERNET permission -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- FIXME: 1.4 -->
 
     <application
             android:allowBackup="true"

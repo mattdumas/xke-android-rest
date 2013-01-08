@@ -30,18 +30,9 @@ public class TweetsLoader extends AsyncTaskLoader<Cursor> {
     public Cursor loadInBackground() {
         Log.i(TAG, "Loading tweets from SQLite DB");
 
-        SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
-        builder.setTables(Tables.TWEETS);
+        // FIXME: 3.2
 
-        Cursor cursor = builder.query(mSqLiteOpenHelper.getReadableDatabase(),
-                                      new String[] { TweetColumns.TWEET_CONTENT }, // projection
-                                      null, // selection
-                                      null, // selectionArgs
-                                      null, // groupBy
-                                      null, // having
-                                      null); // sortOrder
-
-        return cursor;
+        return null;
     }
 
     @Override

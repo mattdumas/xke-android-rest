@@ -52,58 +52,41 @@ public class TwitterService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        // FIXME: extract params (ResultReceiver)
-        ResultReceiver resultReceiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
+        // FIXME: 2.3.1
 
         try {
-            // FIXME: prepare HTTP request
+            // FIXME: 2.3.2
             HttpRequestBase request = prepareRequest();
 
-            // FIXME: execute HTTP request
-            HttpClient client = new DefaultHttpClient();
-            HttpResponse response = client.execute(request);
+            // FIXME: 2.3.3
 
-            // FIXME: Process HTTP response (parse & notify & persist)
-            processResponse(response, resultReceiver);
+            // FIXME: 2.3.4
+            processResponse(null, null);
         } catch (URISyntaxException e) {
             Log.e(TAG, "Error trying to build URI", e);
-            // FIXME send notification with an invalid error code (i.e -1)
-            resultReceiver.send(0, null);
+            // FIXME: send notification with an invalid error code (i.e -1)
         } catch (IOException e) {
-            // FIXME send notification with an invalid error code (i.e -1)
+            // FIXME: send notification with an invalid error code (i.e -1)
             Log.e(TAG, "Error tying to get last tweets", e);
-            resultReceiver.send(0, null);
         }
     }
 
 
     private HttpRequestBase prepareRequest() throws URISyntaxException {
-        // TODO: do everything with the builder
-        Uri uri = Uri.parse(TWITTER_API_ENDPOINT);
+        // FIXME: 2.3.2
 
-        Uri.Builder builder = uri.buildUpon();
-
-        builder.appendQueryParameter("q", "android");
-
-        HttpGet request = new HttpGet();
-        request.setURI(new URI(builder.build().toString()));
-
-        return request;
+        return null;
     }
 
     private void processResponse(HttpResponse response, ResultReceiver resultReceiver) throws IOException {
         HttpEntity entity = response.getEntity();
         if (entity != null) {
-            // FIXME: call parse tweets by converting entity in string (look @ EntityUtils)
             ArrayList<String> tweets = parseTweets(EntityUtils.toString(entity));
 
-            // FIXME: persist tweets
             persistTweets(tweets);
 
-            // FIXME: notify
-            StatusLine statusLine = response.getStatusLine();
-            int statusCode = statusLine != null ? statusLine.getStatusCode() : 0;
-            notify(resultReceiver, statusCode, tweets);
+            // FIXME: 2.3.4
+
         }
     }
 
@@ -126,36 +109,9 @@ public class TwitterService extends IntentService {
     }
 
     private void persistTweets(ArrayList<String> tweets) {
-        // FIXME: get a writable database from SQLiteOpenHelper member
-        SQLiteDatabase db = mSqLiteOpenHelper.getWritableDatabase();
-
-        try {
-            db.beginTransaction();
-
-            // FIXME: delete previous cached tweets
-            db.delete(Tables.TWEETS, null, null);
-
-            // FIXME: instanciate ContentValues object and populate it with tweets
-            for (String tweet : tweets) {
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(TweetColumns.TWEET_CONTENT, tweet);
-
-                // FIXME: insert ContentValues in DB
-                db.insert(Tables.TWEETS, null, contentValues);
-            }
-
-            db.setTransactionSuccessful();
-        }
-        finally {
-            if (db.inTransaction()) db.endTransaction();
-        }
+        // FIXME: 3.6
 
     }
 
-    private void notify(ResultReceiver resultReceiver, int statusCode, ArrayList<String> tweets) {
-        Bundle resultData = new Bundle();
-        resultData.putStringArrayList(TWEETS, tweets);
-        resultReceiver.send(statusCode, resultData);
-    }
 
 }
