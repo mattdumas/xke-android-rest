@@ -1,0 +1,22 @@
+*.class
+*.dex
+*.o
+*.so
+*.log
+
+# OS generated files
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Project specific
+.classpath
+.project
+.idea
+*.iml
+bin
+gen
+libs
+obj
+.pmd
