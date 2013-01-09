@@ -20,7 +20,7 @@ Instructions
  - 2.1.3 (optionnel) Ajouter 2, 3 chaînes de caractères hard codées dans l'adapter et exécuter l'application, une fois l'application démarrée, vous devriez voir vos entrées dans la liste. Supprimer les entrées hard codées.
  - 2.1.4 Récupérer l'unique instance de la classe TwitterServiceHelper et la setter au membre mServiceHelper.
  - 2.1.5 Récupérer le bouton définit dans le main layout avec l'id `R.id.refresh` et lui ajouter un OnClickListener qui invoque la méthode `refreshTweets` de l'activité.
- - 2.1.6 Implémenter la méthode `refreshTweets` de l'activité en affichant une notification Toast pour prévenir du rafraîchisement des données et en invoquant la méthode éponyme du TwitterServiceHelper.
+ - 2.1.6 Implémenter la méthode `refreshTweets` de l'activité en affichant une notification Toast pour prévenir l'utilisateur du rafraîchisement des données et en invoquant la méthode éponyme du TwitterServiceHelper.
  - 2.1.7 Pour être notifié des nouveaux résultats, il va falloir ajouter l'activité en tant que listener auprès du TwitterServiceHelper 
      - Implémenter l'interface TwitterEventListener au sein de l'activité. Pour la méthode onNewTweets, supprimer le contenu déjà présent dans l'adapter et lui setter les nouveaux tweets passées en paramètre. Pour la méthode onError, afficher simplement un notification Toast pour prévenir l'utilisateur.
      - Ajouter l'activité en tant que listener auprès du TwitterServiceHelper dans la phase onResume de son cycle de vie.
@@ -33,10 +33,10 @@ Instructions
  - 2.3.1 Récupérer le ResultReceiver au sein de l'intent.
  - 2.3.2 Implémenter la méthode prepareRequest qui créée une requête HTTP GET, poitant sur `http://search.twitter.com/search.json` et ayant comme paramètre `q=android`
  - 2.3.3 Exécuter la requête HTTP 
- - 2.3.4 Invoquer la méthode processResponse et l'implémenter pour notifier les résultats via le ResultReceiver.
+ - 2.3.4 Invoquer la méthode processResponse et l'implémenter pour notifier le service helper avec le code HTTP et les nouveaux tweets via le ResultReceiver.
 
 
-Lancer l'application, cliquer sur le bouton "refresh tweets" : Magie ! (on l'espère)
+Lancer l'application, cliquer sur le bouton "refresh tweets" : Magie ! (on l'espère).
 Changer l'orientation de l'écran (CTRL + F12 sur l'émulateur), horreur ! les données ont disparu ! 
 
 
