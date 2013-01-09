@@ -44,12 +44,17 @@ public class TwitterServiceHelper {
 
     public void refreshTweets() {
         // FIXME: 2.2.1
+        // Create intent to call TwitterService
+
+        // Put extra data to intent : ResultReceiver
+
+        // Start service with context member
 
     }
 
 
     private ResultReceiver getResultReceiver() {
-        // FIXME: 2.2.1
+        // FIXME: 2.2.1 - override onReceiveResult method
 
         return null;
     }

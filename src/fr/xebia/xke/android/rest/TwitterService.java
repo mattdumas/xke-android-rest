@@ -52,7 +52,7 @@ public class TwitterService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        // FIXME: 2.3.1
+        // FIXME: 2.3.1 - Extract ResultReceiver
 
         try {
             // FIXME: 2.3.2
@@ -86,6 +86,11 @@ public class TwitterService extends IntentService {
             persistTweets(tweets);
 
             // FIXME: 2.3.4
+            // Put tweets data into a Bundle
+
+            // Get HTTP code status with response status line
+
+            // Send results to ResultReceiver
 
         }
     }
@@ -110,6 +115,16 @@ public class TwitterService extends IntentService {
 
     private void persistTweets(ArrayList<String> tweets) {
         // FIXME: 3.6
+
+        // Get a writable DB by using SQLiteOpenHelper member
+
+        // Start a transaction
+
+        // Delete previous tweets
+
+        // Insert new tweets
+
+        // Set transaction successful
 
     }
 

@@ -31,6 +31,9 @@ public class TweetsLoader extends AsyncTaskLoader<Cursor> {
         Log.i(TAG, "Loading tweets from SQLite DB");
 
         // FIXME: 3.2
+        // Use SQLiteQueryBuilder
+        // Set tables Table.Tweets
+        // Query DB and retrieve cursor
 
         return null;
     }

@@ -30,15 +30,17 @@ public class MainActivity extends ListActivity implements TwitterEventListener {
 
         setContentView(R.layout.main);
 
-        // FIXME: 2.1.1
+        // FIXME: 2.1.1 - Init ArrayAdapter with the 2 args constructor
 
-        // FIXME: 2.1.2
+        // FIXME: 2.1.2 - set the adataper to ListActivity
 
-        // FIXME: 2.14
+        // FIXME: 2.1.3 (optional) - Put hard coded data into adapter & launch the app
 
-        // FIXME: 2.1.5
+        // FIXME: 2.1.4
 
-        // FIXME: 3.4
+        // FIXME: 2.1.5 - Use findViewById
+
+        // FIXME: 3.4 - Use initLoader method of LoaderManager
     }
 
     @Override
@@ -73,7 +75,7 @@ public class MainActivity extends ListActivity implements TwitterEventListener {
 
 
     private void refreshTweets() {
-        // FIXME: 2.1.6
+        // FIXME: 2.1.6 - Toast notification (Toast.makeText) and delegate to TwitterServiceHelper
 
     }
 
