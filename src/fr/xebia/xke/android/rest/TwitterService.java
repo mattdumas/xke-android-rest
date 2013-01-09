@@ -52,33 +52,26 @@ public class TwitterService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        // FIXME: extract params (ResultReceiver)
         ResultReceiver resultReceiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
 
         try {
-            // FIXME: prepare HTTP request
             HttpRequestBase request = prepareRequest();
 
-            // FIXME: execute HTTP request
             HttpClient client = new DefaultHttpClient();
             HttpResponse response = client.execute(request);
 
-            // FIXME: Process HTTP response (parse & notify & persist)
             processResponse(response, resultReceiver);
         } catch (URISyntaxException e) {
             Log.e(TAG, "Error trying to build URI", e);
-            // FIXME send notification with an invalid error code (i.e -1)
-            resultReceiver.send(0, null);
+            resultReceiver.send(-1, null);
         } catch (IOException e) {
-            // FIXME send notification with an invalid error code (i.e -1)
             Log.e(TAG, "Error tying to get last tweets", e);
-            resultReceiver.send(0, null);
+            resultReceiver.send(-1, null);
         }
     }
 
 
     private HttpRequestBase prepareRequest() throws URISyntaxException {
-        // TODO: do everything with the builder
         Uri uri = Uri.parse(TWITTER_API_ENDPOINT);
 
         Uri.Builder builder = uri.buildUpon();
@@ -94,13 +87,10 @@ public class TwitterService extends IntentService {
     private void processResponse(HttpResponse response, ResultReceiver resultReceiver) throws IOException {
         HttpEntity entity = response.getEntity();
         if (entity != null) {
-            // FIXME: call parse tweets by converting entity in string (look @ EntityUtils)
             ArrayList<String> tweets = parseTweets(EntityUtils.toString(entity));
 
-            // FIXME: persist tweets
             persistTweets(tweets);
 
-            // FIXME: notify
             StatusLine statusLine = response.getStatusLine();
             int statusCode = statusLine != null ? statusLine.getStatusCode() : 0;
             notify(resultReceiver, statusCode, tweets);
@@ -126,21 +116,17 @@ public class TwitterService extends IntentService {
     }
 
     private void persistTweets(ArrayList<String> tweets) {
-        // FIXME: get a writable database from SQLiteOpenHelper member
         SQLiteDatabase db = mSqLiteOpenHelper.getWritableDatabase();
 
         try {
             db.beginTransaction();
 
-            // FIXME: delete previous cached tweets
             db.delete(Tables.TWEETS, null, null);
 
-            // FIXME: instanciate ContentValues object and populate it with tweets
             for (String tweet : tweets) {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(TweetColumns.TWEET_CONTENT, tweet);
 
-                // FIXME: insert ContentValues in DB
                 db.insert(Tables.TWEETS, null, contentValues);
             }
 

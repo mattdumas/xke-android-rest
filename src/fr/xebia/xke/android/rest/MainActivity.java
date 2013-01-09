@@ -38,17 +38,12 @@ public class MainActivity extends ListActivity implements LoaderManager.LoaderCa
             }
         });
 
-
-        // FIXME: initialize adapter with a simple default layout (R.layout.simple_list_item_1)
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 
-        // FIXME: setListAdapter
         setListAdapter(mAdapter);
 
-        // FIXME: get the unique instance of TwitterSearchHelper
         mServiceHelper = TwitterServiceHelper.getInstance(getApplicationContext());
 
-        // FIXME: init Loader with getLoaderManager() (args parameter is not needed)
         getLoaderManager().initLoader(TWEETS_LOADER_ID, null, this);
     }
 
@@ -66,13 +61,11 @@ public class MainActivity extends ListActivity implements LoaderManager.LoaderCa
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        // FIXME: returns new TweetsLoader
         return new TweetsLoader(this);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        // FIXME: check if cursor is null, if it is, call refreshTweets, else, extract tweets from cursor and call setTweets
         if (cursor == null || !cursor.moveToFirst()) {
             refreshTweets();
         } else {
@@ -97,11 +90,7 @@ public class MainActivity extends ListActivity implements LoaderManager.LoaderCa
 
     @Override
     public void onNewTweets(ArrayList<String> tweets) {
-        // For loader version
         getLoaderManager().restartLoader(TWEETS_LOADER_ID, null, this);
-
-        // For basic version
-        // setTweets(tweets);
     }
 
     @Override
@@ -115,9 +104,7 @@ public class MainActivity extends ListActivity implements LoaderManager.LoaderCa
         mServiceHelper.refreshTweets();
     }
 
-
     private void setTweets(ArrayList<String> tweets) {
-        // FIXME: populate mAdapter with tweets
         mAdapter.clear();
         mAdapter.addAll(tweets);
     }

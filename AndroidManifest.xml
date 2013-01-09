@@ -8,7 +8,6 @@
             android:minSdkVersion="11"
             android:targetSdkVersion="17" />
 
-    <!-- FIXME: add INTERNET permission -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application

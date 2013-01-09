@@ -39,22 +39,18 @@ public class TwitterServiceHelper {
 
     public void removeListener(TwitterEventListener listener) {
         mListeners.remove(listener);
-        // TODO : stop service here ?
     }
 
     public void refreshTweets() {
-        // FIXME: create an intent to call TwitterService & pass it the ResultReceiver
         Intent intent = new Intent(mContext, TwitterService.class);
 
         intent.putExtra(TwitterService.EXTRA_RESULT_RECEIVER, getResultReceiver());
 
-        // FIXME: start the service with the context member by passing the previous created intent
         mContext.startService(intent);
     }
 
 
     private ResultReceiver getResultReceiver() {
-        // FIXME: return an anonymous inner class impl which notify registered listeners when it receive new tweets
         return new ResultReceiver(new Handler()) {
             @Override
             protected void onReceiveResult(int resultCode, Bundle resultData) {
